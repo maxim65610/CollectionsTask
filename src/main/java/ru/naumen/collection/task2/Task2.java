@@ -41,12 +41,12 @@ public class Task2
 
         // Пройдем по первой коллекции и добавим хеши пользователей в Set
         for (User user : collA) {
-            userHashes.add(computeUserHash(user)); // хэшируем каждого пользователя с помощью метода computeUserHash
+            userHashes.add(user.hash()); // хэшируем каждого пользователя с помощью метода computeUserHash
         }
 
         // Теперь проверим, есть ли совпадения в collB
         for (User user : collB) {
-            if (userHashes.contains(computeUserHash(user))) { // если хеш присутствует в Set
+            if (userHashes.contains(user.hash())) { // если хеш присутствует в Set
                 duplicates.add(user); // добавляем пользователя в список дубликатов
             }
         }
@@ -54,15 +54,5 @@ public class Task2
         //Общая сложность алгоритма — O(n + m),
         // где n — количество пользователей в collA,
         // а m — количество пользователей в collB.
-    }
-    /**
-     * Метод для вычисления хеша пользователя
-     */
-    private static int computeUserHash(User user) {
-        int result = 17;
-        result = 31 * result + (user.getUsername() != null ? user.getUsername().hashCode() : 0);
-        result = 31 * result + (user.getEmail() != null ? user.getEmail().hashCode() : 0);
-        result = 31 * result + Arrays.hashCode(user.getPasswordHash()); // Обрабатываем массив байтов
-        return result;
     }
 }

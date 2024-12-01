@@ -1,5 +1,8 @@
 package ru.naumen.collection.task2;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 /**
  * Пользователь
  *
@@ -11,15 +14,7 @@ public class User {
     private String email;
     private byte[] passwordHash;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public byte[] getPasswordHash() {
-        return passwordHash;
+    public int hash() {
+        return Objects.hash(username, email, Arrays.hashCode(passwordHash));
     }
 }
