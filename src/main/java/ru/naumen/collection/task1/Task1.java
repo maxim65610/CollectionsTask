@@ -1,5 +1,8 @@
 package ru.naumen.collection.task1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Дано:
  * <pre>
@@ -24,6 +27,11 @@ package ru.naumen.collection.task1;
  */
 public class Task1
 {
+    // Хранение товаров по id билета
+    // Я использовал HashMap потому что он очень быстр и в среднем его сложность составляет O(1)
+    // В худшем случае(в случае сильных коллизий) сложность O(n),
+    private Map<Long, Goods> ticketGoodsMap = new HashMap<>();
+
     public enum Goods {
         /**
          * нет товаров
@@ -38,12 +46,16 @@ public class Task1
          */
         FOOD_AND_DRINKS
     }
-
+    /**
+     * Пример метода для добавления товара для билета.
+     */
+    public void addGoodsForTicket(Ticket ticket, Goods goods){
+        ticketGoodsMap.put(ticket.getId(), goods);
+    }
     /**
      * Получить товары по билету
      */
     public Goods getGoods(Ticket ticket) {
-        // TODO реализовать
-        return null;
+        return ticketGoodsMap.getOrDefault(ticket.getId(), Goods.EMPTY);
     }
 }

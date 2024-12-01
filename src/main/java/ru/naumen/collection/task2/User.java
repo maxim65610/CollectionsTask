@@ -10,4 +10,16 @@ public class User {
     private String username;
     private String email;
     private byte[] passwordHash;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public byte[] getPasswordHash() {
+        return passwordHash;
+    }
 }
