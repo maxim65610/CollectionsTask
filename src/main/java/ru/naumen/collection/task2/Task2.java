@@ -28,30 +28,25 @@ import java.util.*;
  * @author vpyzhyanov
  * @since 19.10.2023
  */
-public class Task2
-{
+public class Task2 {
     /**
      * Возвращает дубликаты пользователей, которые есть в обеих коллекциях
      */
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
-        // Используем HashSet для хранения хешей пользователей из collA
-        Set<Integer> userHashes = new HashSet<>();
+        // Используем HashSet для хранения пользователей из collA
+        Set<User> userSet = new HashSet<>(collA);
+
         // Список для хранения дубликатов
         List<User> duplicates = new ArrayList<>();
 
-        // Пройдем по первой коллекции и добавим хеши пользователей в Set
-        for (User user : collA) {
-            userHashes.add(user.hash()); // хэшируем каждого пользователя с помощью метода computeUserHash
-        }
-
         // Теперь проверим, есть ли совпадения в collB
         for (User user : collB) {
-            if (userHashes.contains(user.hash())) { // если хеш присутствует в Set
-                duplicates.add(user); // добавляем пользователя в список дубликатов
+            if (userSet.contains(user)) { // Если объект с таким же hashCode и equals() уже есть в userSet
+                duplicates.add(user); // Добавляем пользователя в список дубликатов
             }
         }
         return duplicates;
-        //Общая сложность алгоритма — O(n + m),
+        // Общая сложность алгоритма — O(n + m),
         // где n — количество пользователей в collA,
         // а m — количество пользователей в collB.
     }
