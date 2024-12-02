@@ -7,6 +7,10 @@ package ru.naumen.collection.task1;
  * @since 19.10.2023
  */
 public class Ticket {
-    private long id;
+    private long  id;
     private String client;
+
+    public long getId() {
+        return id;
+    }
 }
