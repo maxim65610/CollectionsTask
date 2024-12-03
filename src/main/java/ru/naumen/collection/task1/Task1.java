@@ -1,5 +1,8 @@
 package ru.naumen.collection.task1;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Дано:
  * <pre>
@@ -24,6 +27,18 @@ package ru.naumen.collection.task1;
  */
 public class Task1
 {
+    // Хранение товаров по билету
+    // Я использовал HashMap потому что он очень быстр и его сложность составляет O(1)
+    // Я понял, о чем вы говорите. Вероятность коллизий будет очень низка,
+    // потому что у каждого пользователя свой id,
+    // он индивидуален и повторяться не может.
+    // Требования у HashMap к ключам:
+    //1)Хорошо реализованная хеш-функция, которая равномерно распределяет ключи.
+    //2)Быстрая и корректная реализация метода equals().
+    //3)Неизменяемость ключей после их добавления в HashMap.
+    // Все эти требования выполняются, поэтому сложность O(1)
+    private Map<Ticket, Goods> ticketGoodsMap = new HashMap<>();
+
     public enum Goods {
         /**
          * нет товаров
@@ -38,12 +53,10 @@ public class Task1
          */
         FOOD_AND_DRINKS
     }
-
     /**
      * Получить товары по билету
      */
     public Goods getGoods(Ticket ticket) {
-        // TODO реализовать
-        return null;
+        return ticketGoodsMap.getOrDefault(ticket, Goods.EMPTY);
     }
 }
