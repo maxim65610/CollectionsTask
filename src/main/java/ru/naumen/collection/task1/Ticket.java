@@ -12,9 +12,6 @@ public class Ticket {
     private long  id;
     private String client;
 
-    public long getId() {
-        return id;
-    }
     /**
      * Переопределяет метод hashCode() для генерации хеш-кода
      * на основе уникального идентификатора билета.

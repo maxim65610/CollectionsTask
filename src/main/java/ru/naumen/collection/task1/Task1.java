@@ -27,7 +27,7 @@ import java.util.Map;
  */
 public class Task1
 {
-    // Хранение товаров по id билета
+    // Хранение товаров по билету
     // Я использовал HashMap потому что он очень быстр и его сложность составляет O(1)
     // Я понял, о чем вы говорите. Вероятность коллизий будет очень низка,
     // потому что у каждого пользователя свой id,
@@ -37,7 +37,7 @@ public class Task1
     //2)Быстрая и корректная реализация метода equals().
     //3)Неизменяемость ключей после их добавления в HashMap.
     // Все эти требования выполняются, поэтому сложность O(1)
-    private Map<Long, Goods> ticketGoodsMap = new HashMap<>();
+    private Map<Ticket, Goods> ticketGoodsMap = new HashMap<>();
 
     public enum Goods {
         /**
@@ -54,15 +54,9 @@ public class Task1
         FOOD_AND_DRINKS
     }
     /**
-     * Пример метода для добавления товара для билета.
-     */
-    public void addGoodsForTicket(Ticket ticket, Goods goods){
-        ticketGoodsMap.put(ticket.getId(), goods);
-    }
-    /**
      * Получить товары по билету
      */
     public Goods getGoods(Ticket ticket) {
-        return ticketGoodsMap.getOrDefault(ticket.getId(), Goods.EMPTY);
+        return ticketGoodsMap.getOrDefault(ticket, Goods.EMPTY);
     }
 }
